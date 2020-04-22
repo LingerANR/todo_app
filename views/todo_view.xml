@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <data>
+     <!-- Menu principal -->
+     <menuitem id="menu_root_todo_task"
+               name="To-Do"
+               sequence="20"
+     />
+     <!-- Action Window Abre la lista de Tares Pendientes -->
+     <record id="action_todo_task" model="ir.actions.act_window">
+            <field name="name">To-do Task</field>
+            <field name="res_model">todo.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+     </record>
+     <!-- Menu que llama Action window que a su vez
+          abre la lista de Tareas Pendientes  -->
+     <menuitem id="menu_todo_task"
+               name="To-Do Tasks"
+               parent="menu_root_todo_task"
+               sequence="20"
+               action="action_todo_task" />
+
+
+      <record id="view_form_todo_task" model="ir.ui.view">
+            <field name="name">To-do Task Form</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+
+              <form>
+                 <header>
+                   <button name = "do_toggle_done" type = "object"
+                           string = "Toggle Done" class = "oe_highlight" />
+                   <button name = "do_clear_done" type = "object"
+                           string = "Borrar todo listo" />
+
+                 </header>
+              <sheet>
+                <div class="oe_title">
+                       <h1>
+                           <field name="name" />
+                       </h1>
+                   </div>
+                <group name="group_top">
+                <group name="group_left">
+
+                </group>
+                <group name="group_right">
+                    <field name="is_done"/>
+                    <field name="active" readonly="1"/>
+                </group>
+                </group>
+
+             </sheet>
+             </form>
+            </field>
+       </record>
+
+       <record id="view_tree_todo_task" model="ir.ui.view">
+        <field name="name">To-do Task Tree</field>
+        <field name="model">todo.task</field>
+        <field name="arch" type="xml">
+             <tree >
+                  <field name="name"/>
+                  <field name="is_done"/>
+                    <field name="active"/>
+             </tree>
+        </field>
+      </record>
+
+      <record id="view_filter_todo_task" model="ir.ui.view">
+         <field name="name">To-Do Task Search </field>
+         <field name="model">todo.task</field>
+         <field name="arch" type="xml">
+            <search string="Buscar To-Do">
+               <field name="name"/>
+               <filter string="Not Done" domain="[('is_done','=',False)]" name="is_done"/>
+               <filter string="Done" domain="[('is_done','!=',False)]" name="is_done"/>
+           </search>
+        </field>
+     </record>
+
+
+     </data>
+</odoo>
