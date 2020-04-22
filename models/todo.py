@@ -10,6 +10,7 @@ class TodoTask(models.Model):
       _description = 'To-do Task'
 
       name = fields.Char('Task Description', required=True)
+      date_limit = fields.Date('Date Limit',required=True)
       is_done = fields.Boolean('Done?')
       active = fields.Boolean('Active?', default=True)
 
