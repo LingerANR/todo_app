@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <data>
+
+      <record id="view_form_todo_task_inherit" model="ir.ui.view">
+            <field name="name">To-do Task Form - User extension</field>
+            <field name="model">todo.task</field>
+            <field name="inherit_id" ref="todo_app.view_form_todo_task" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='is_done']" position="after" >
+                  <field name="user_id" />
+                </xpath>
+
+            </field>
+       </record>
+
+
+
+     </data>
+</odoo>
