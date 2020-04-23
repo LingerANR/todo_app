@@ -11,5 +11,6 @@
 "website": "https://www.realsystems.com.mx/",
 "license": "LGPL-3",
 'data' : ['security/ir.model.access.csv',
+          'security/todo_access_rules.xml',
           'views/todo_view.xml'],
 }
